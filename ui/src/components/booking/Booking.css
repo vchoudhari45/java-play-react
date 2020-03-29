@@ -1,0 +1,9 @@
+body {
+    width: 90%;
+    padding-top: 20px;
+    margin: auto;
+}
+
+.error {
+    color: red;
+}

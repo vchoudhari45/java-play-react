@@ -1,21 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {HashRouter, Route} from 'react-router-dom'
+import {BrowserRouter, Route} from 'react-router-dom'
 import './index.css';
-import App from './components/app/App';
+import Booking from './components/booking/Booking';
 import * as serviceWorker from './serviceWorker';
 
-//ReactDOM.render(
-//  <React.StrictMode>
-//    <App />
-//  </React.StrictMode>,
-//  document.getElementById('root')
-//);
-
 ReactDOM.render(
-    <HashRouter>
-       <Route exact path="/" component={App}/>
-    </HashRouter>,
+    <BrowserRouter>
+        <Route exact path="/" component={Booking}/>
+    </BrowserRouter>,
     document.getElementById('root')
 );
 
