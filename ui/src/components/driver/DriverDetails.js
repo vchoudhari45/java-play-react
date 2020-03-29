@@ -6,6 +6,16 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import NumericLabel from 'react-pretty-numbers';
+
+let params = {
+  justification: 'R',
+  locales : 'en-AU',
+  percentage: false,
+  precision: 2,
+  commafy: true,
+  shortFormat: true
+};
 
 class DriverDetails extends React.Component {
 
@@ -13,7 +23,7 @@ class DriverDetails extends React.Component {
     return (
       <div className='wrapper'>
           <h1>Booking App</h1>
-          Your Request is confirmed your driver {this.props.drivers[0].driverName} is on his way
+          {this.props.customerName}, your request is confirmed your driver <b>{this.props.drivers[0].driver.driverName}</b> is on his way
           <br />&nbsp;
           <TableContainer component={Paper}>
               <Table>
@@ -22,6 +32,7 @@ class DriverDetails extends React.Component {
                       <TableCell>Driver&rsquo;s Name</TableCell>
                       <TableCell align="right">Latitude</TableCell>
                       <TableCell align="right">Longitude</TableCell>
+                      <TableCell align="right">Distance(km)</TableCell>
                       <TableCell>Status</TableCell>
                     </TableRow>
                   </TableHead>
@@ -29,13 +40,14 @@ class DriverDetails extends React.Component {
                   <TableBody>
                     {
                       this.props.drivers.map(row => (
-                          <TableRow key={row.id}>
+                          <TableRow key={row.driverId}>
                             <TableCell component="th" scope="row">
-                              {row.driverName}
+                              {row.driver.driverName}
                             </TableCell>
-                            <TableCell align="right">{row.currentLatitude}</TableCell>
-                            <TableCell align="right">{row.currentLongitude}</TableCell>
-                            <TableCell>{row.status}</TableCell>
+                            <TableCell align="right">{row.driver.latitude}</TableCell>
+                            <TableCell align="right">{row.driver.longitude}</TableCell>
+                            <TableCell align="right"><NumericLabel params={params}>{row.distance}</NumericLabel></TableCell>
+                            <TableCell>{row.driver.status}</TableCell>
                           </TableRow>
                         )
                       )

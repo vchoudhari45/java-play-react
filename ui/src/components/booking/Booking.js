@@ -63,7 +63,9 @@ class Booking extends Component {
         .then(response => {
             if(response.data && response.data.length > 0) {
                 this.setState({...this.state, drivers: response.data})
-                console.log(this.state)
+            }
+            else {
+                this.setState({...this.state, requested: true, drivers: response.data})
             }
         })
         .catch(error => {
@@ -90,7 +92,7 @@ class Booking extends Component {
     if(this.state.drivers && this.state.drivers.length > 0) {
         return (
             <div className='wrapper'>
-                <DriverDetails drivers={this.state.drivers} />
+                <DriverDetails drivers={this.state.drivers} customerName={this.state.fullName} />
             </div>
         );
     }
@@ -98,7 +100,9 @@ class Booking extends Component {
         return (
           <div className='wrapper'>
             <h1>&nbsp;Booking App</h1>
+            {console.log(this.state.requested+" Ok checking "+this.state.drivers.length)}
             { this.state.message && this.state.message.trim().length > 0 ? <Alert severity="info">{this.state.message}</Alert> : "" }
+            { this.state.requested && this.state.drivers.length === 0 ? <Alert severity="info">All drivers are currently busy serving other customer, please after some time</Alert> : "" }
             <div className='form-wrapper'>
               <form onSubmit={this.handleSubmit} noValidate>
                 <div className='fullName'>

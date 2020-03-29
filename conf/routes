@@ -4,6 +4,8 @@
 
 # An example controller showing a sample home page
 GET    /booking                     controllers.BookingController.index(name, pickupLocation)
+GET    /drivers                     controllers.BookingController.listAllDrivers()
+GET    /orders                     controllers.BookingController.listAllOrders()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

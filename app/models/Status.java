@@ -1,4 +1,4 @@
 package models;
 
-public enum Status {BUSY, AVAILABLE}
+public enum Status { AVAILABLE, BUSY}
 
